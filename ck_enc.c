@@ -1,11 +1,11 @@
-/* CKƒR[ƒfƒbƒNƒGƒ“ƒR[ƒ_i‘¦È”Åj */
+/* CKã‚³ãƒ¼ãƒ‡ãƒƒã‚¯ã‚¨ãƒ³ã‚³ãƒ¼ãƒ€ï¼ˆå³å¸­ç‰ˆï¼‰ */
 
 /*
-	<“ü—Íƒtƒ@ƒCƒ‹–¼>_[n].bmp
-		n : 0‚Ü‚½‚Í1‚Ån‚Ü‚é10i”‚Ì’Ê‚µ”Ô†B¶‹l‚Ìƒ[ƒ‚Í©“®”»•Ê‚µ‚Ü‚· 
+	<å…¥åŠ›ãƒ•ã‚¡ã‚¤ãƒ«å>_[n].bmp
+		n : 0ã¾ãŸã¯1ã§å§‹ã¾ã‚‹10é€²æ•°ã®é€šã—ç•ªå·ã€‚å·¦è©°ã®ã‚¼ãƒ­ã¯è‡ªå‹•åˆ¤åˆ¥ã—ã¾ã™ 
 
-	‚Å¦‚³‚ê‚é˜A”Ôbmp‚ğCKƒR[ƒfƒbƒN‚Åˆ³k‚µ‚Ü‚·B
-	ŠY“–‚Ìƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚È‚¢ê‡A‚»‚±‚Åˆ—‚ğI—¹‚µ‚Ü‚·B
+	ã§ç¤ºã•ã‚Œã‚‹é€£ç•ªbmpã‚’CKã‚³ãƒ¼ãƒ‡ãƒƒã‚¯ã§åœ§ç¸®ã—ã¾ã™ã€‚
+	è©²å½“ã®ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ãªã„å ´åˆã€ãã“ã§å‡¦ç†ã‚’çµ‚äº†ã—ã¾ã™ã€‚
 
 */
 
@@ -17,30 +17,30 @@
 #include "bmplib.h"
 
 
-#define mcu_rgb32					bmp_RGB32  		// RGB:888‚ğ32bit‚ÅƒpƒbƒN‚µ‚½‚PƒsƒNƒZƒ‹•ª‚Ìƒf[ƒ^ 
+#define mcu_rgb32					bmp_RGB32  		// RGB:888ã‚’32bitã§ãƒ‘ãƒƒã‚¯ã—ãŸï¼‘ãƒ”ã‚¯ã‚»ãƒ«åˆ†ã®ãƒ‡ãƒ¼ã‚¿ 
 #define mcu_rgb32_red				bmp_RGB32_red
 #define mcu_rgb32_green				bmp_RGB32_green
 #define mcu_rgb32_blue				bmp_RGB32_blue
 #define mcu_rgb32_pack				bmp_RGB32_pack
 
 
-unsigned long acm_compless_frame(	// ƒtƒŒ[ƒ€‚Ìƒf[ƒ^ƒTƒCƒY‚ğ•Ô‚· 
-		bmp_BITMAP_HANDLE *pBH,		// ƒtƒŒ[ƒ€‚Ì‰æ‘œƒf[ƒ^(BMP‰æ‘œ) 
-		bmp_BITMAP_HANDLE *pREF,	// QÆƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚Ìƒ|ƒCƒ“ƒ^ 
-		int qual,					// ƒNƒIƒŠƒeƒBˆø”i0`6j
-		unsigned short *pWork,		// ˆ³kƒf[ƒ^‚ªŠi”[‚³‚ê‚éƒ[ƒNƒGƒŠƒA 
-		int rbflush					// QÆƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚ğƒtƒ‰ƒbƒVƒ… 
+unsigned long acm_compless_frame(	// ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒ‡ãƒ¼ã‚¿ã‚µã‚¤ã‚ºã‚’è¿”ã™ 
+		bmp_BITMAP_HANDLE *pBH,		// ãƒ•ãƒ¬ãƒ¼ãƒ ã®ç”»åƒãƒ‡ãƒ¼ã‚¿(BMPç”»åƒ) 
+		bmp_BITMAP_HANDLE *pREF,	// å‚ç…§ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒ³ã‚¿ 
+		int qual,					// ã‚¯ã‚ªãƒªãƒ†ã‚£å¼•æ•°ï¼ˆ0ï½6ï¼‰
+		unsigned short *pWork,		// åœ§ç¸®ãƒ‡ãƒ¼ã‚¿ãŒæ ¼ç´ã•ã‚Œã‚‹ãƒ¯ãƒ¼ã‚¯ã‚¨ãƒªã‚¢ 
+		int rbflush					// å‚ç…§ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã‚’ãƒ•ãƒ©ãƒƒã‚·ãƒ¥ 
 	);
 
 #pragma pack (1)
 typedef struct {
-	unsigned char id[2];			// ƒwƒbƒ_ 
-	unsigned char ver[2];			// ƒR[ƒfƒbƒNƒo[ƒWƒ‡ƒ“ 
-	unsigned short x_size;			// ‰æ‘œ‚Ì‰¡ƒTƒCƒY 
-	unsigned short y_size;			// ‰æ‘œ‚ÌcƒTƒCƒY 
-	unsigned short mcu_n;			// ƒtƒŒ[ƒ€‚ğ\¬‚·‚éMCU‚ÌŒÂ” 
-	unsigned short fps;				// ƒtƒŒ[ƒ€ƒŒ[ƒg 
-	unsigned long fnum;				// ‘ƒtƒŒ[ƒ€” 
+	unsigned char id[2];			// ãƒ˜ãƒƒãƒ€ 
+	unsigned char ver[2];			// ã‚³ãƒ¼ãƒ‡ãƒƒã‚¯ãƒãƒ¼ã‚¸ãƒ§ãƒ³ 
+	unsigned short x_size;			// ç”»åƒã®æ¨ªã‚µã‚¤ã‚º 
+	unsigned short y_size;			// ç”»åƒã®ç¸¦ã‚µã‚¤ã‚º 
+	unsigned short mcu_n;			// ãƒ•ãƒ¬ãƒ¼ãƒ ã‚’æ§‹æˆã™ã‚‹MCUã®å€‹æ•° 
+	unsigned short fps;				// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆ 
+	unsigned long fnum;				// ç·ãƒ•ãƒ¬ãƒ¼ãƒ æ•° 
 	char dummy[16];
 } ck_header;
 #pragma pack ()
@@ -54,14 +54,14 @@ const char *scan_inputfile(const char *filename, int frame_num)
 	char num_str[16],*p_num;
 	static char s[1024];
 
-	if (strlen(filename) > 1024-14) {	// ƒtƒ@ƒCƒ‹–¼‚ª’·‚·‚¬‚é 
+	if (strlen(filename) > 1024-14) {	// ãƒ•ã‚¡ã‚¤ãƒ«åãŒé•·ã™ãã‚‹ 
 		return NULL;
 	}
 
 	sprintf(num_str,"%09d.bmp", frame_num);
 	p_num = &num_str[1];
 
-	while( *(p_num-1) == '0' ) {		// ¶‹l‚Ìƒ[ƒ‚ğí‚Á‚Ä‚¢‚­ 
+	while( *(p_num-1) == '0' ) {		// å·¦è©°ã®ã‚¼ãƒ­ã‚’å‰Šã£ã¦ã„ã 
 		sprintf(s,"%s_%s", filename, p_num);
 
 		fp = fopen(s, "rb");
@@ -103,15 +103,15 @@ int main(int argc, char *argv[])
 	char payload_buff[512];
 
 
-	// g‚¢•û 
+	// ä½¿ã„æ–¹ 
 	if (argc < 2) {
 		fprintf(stderr,"usage : ck_enc <file-prefix> [-q<0-6>] [-f<fps>]\n\n");
-		fprintf(stderr,"  <file-prefix>_<n>.bmp ‚Ì˜A”ÔBMP‚ğCKƒR[ƒfƒbƒN‚Åˆ³k‚µ‚Ü‚·B\n");
-		fprintf(stderr,"             ¦ <n>‚Í0‚Ü‚½‚Í1‚Ån‚Ü‚é10i”‚Ì’Ê‚µ”Ô†\n");
-		fprintf(stderr,"  -q<qual> : ˆ³k•i¿i-q0:Å’á - q6:Å‚jƒfƒtƒHƒ‹ƒg‚Í-q4\n");
-		fprintf(stderr,"  -f<fps>  : ƒtƒŒ[ƒ€ƒŒ[ƒg ƒfƒtƒHƒ‹ƒg‚Í-f10.0(10.0fps)\n");
-		fprintf(stderr,"  -g<gop>  : GOPƒtƒŒ[ƒ€” ƒfƒtƒHƒ‹ƒg‚Í-g15(15ƒtƒŒ[ƒ€’PˆÊ)\n");
-		fprintf(stderr,"  -p<byte> : ƒtƒŒ[ƒ€ƒyƒCƒ[ƒhƒf[ƒ^‚ğ•t‚¯‚é(ƒeƒXƒg—p)\n\n");
+		fprintf(stderr,"  <file-prefix>_<n>.bmp ã®é€£ç•ªBMPã‚’CKã‚³ãƒ¼ãƒ‡ãƒƒã‚¯ã§åœ§ç¸®ã—ã¾ã™ã€‚\n");
+		fprintf(stderr,"             â€» <n>ã¯0ã¾ãŸã¯1ã§å§‹ã¾ã‚‹10é€²æ•°ã®é€šã—ç•ªå·\n");
+		fprintf(stderr,"  -q<qual> : åœ§ç¸®å“è³ªï¼ˆ-q0:æœ€ä½ - q6:æœ€é«˜ï¼‰ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯-q4\n");
+		fprintf(stderr,"  -f<fps>  : ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ¬ãƒ¼ãƒˆ ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯-f10.0(10.0fps)\n");
+		fprintf(stderr,"  -g<gop>  : GOPãƒ•ãƒ¬ãƒ¼ãƒ æ•° ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã¯-g15(15ãƒ•ãƒ¬ãƒ¼ãƒ å˜ä½)\n");
+		fprintf(stderr,"  -p<byte> : ãƒ•ãƒ¬ãƒ¼ãƒ ãƒšã‚¤ãƒ­ãƒ¼ãƒ‰ãƒ‡ãƒ¼ã‚¿ã‚’ä»˜ã‘ã‚‹(ãƒ†ã‚¹ãƒˆç”¨)\n\n");
 		exit(0);
 	}
 
@@ -135,16 +135,16 @@ int main(int argc, char *argv[])
 	}
 
 
-	// ƒtƒ@ƒCƒ‹“ü—Í 
+	// ãƒ•ã‚¡ã‚¤ãƒ«å…¥åŠ› 
 
 	file_number = 0;
 
-	fin_name = scan_inputfile(argv[1], file_number);		// ˜A”Ô‚ª0‚©‚çƒXƒ^[ƒg‚·‚é 
+	fin_name = scan_inputfile(argv[1], file_number);		// é€£ç•ªãŒ0ã‹ã‚‰ã‚¹ã‚¿ãƒ¼ãƒˆã™ã‚‹ 
 	if (fin_name == NULL) {
 		file_number++;
-		fin_name = scan_inputfile(argv[1], file_number);	// ˜A”Ô‚ª1‚©‚çƒXƒ^[ƒg‚·‚é 
+		fin_name = scan_inputfile(argv[1], file_number);	// é€£ç•ªãŒ1ã‹ã‚‰ã‚¹ã‚¿ãƒ¼ãƒˆã™ã‚‹ 
 		if (fin_name == NULL) {
-			fprintf(stderr, "[!] —LŒø‚È˜A”Ôƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ.\n\n");
+			fprintf(stderr, "[!] æœ‰åŠ¹ãªé€£ç•ªãƒ•ã‚¡ã‚¤ãƒ«ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“.\n\n");
 			exit(-1);
 		}
 	}
@@ -171,12 +171,12 @@ int main(int argc, char *argv[])
 
 	fckh = fopen(fout_name, "wb");
 	if (fckh == NULL) {
-		printf("[I] o—Íƒtƒ@ƒCƒ‹ %s ‚ªŠJ‚¯‚Ü‚¹‚ñ.\n\n",fout_name);
+		printf("[ï¼] å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ« %s ãŒé–‹ã‘ã¾ã›ã‚“.\n\n",fout_name);
 		exit(-1);
 	}
 
 
-	// ƒwƒbƒ_ì¬ 
+	// ãƒ˜ãƒƒãƒ€ä½œæˆ 
 	ckh.id[0]  = 'C';
 	ckh.id[1]  = 'K';
 	ckh.ver[0] = '7';
@@ -193,7 +193,7 @@ int main(int argc, char *argv[])
 	for(i=0 ; i<512 ; i++) payload_buff[i] = 0;
 
 
-	// ƒGƒ“ƒR[ƒhŠJn 
+	// ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰é–‹å§‹ 
 	ref = bmp_makebuffer(bmp->h.biWidth, bmp->h.biHeight, &bmp_err);
 	if (ref == NULL) exit(-1);
 
@@ -214,24 +214,24 @@ int main(int argc, char *argv[])
 
 		fprintf(stderr,"\rframe %d processing...",frame_num);
 
-		// ƒyƒCƒ[ƒhƒtƒŒ[ƒ€(‰¹º) 
-		//   ƒZƒNƒ^æ“ª2ƒoƒCƒg‚ÍŠÇ—ƒR[ƒh‚È‚Ì‚ÅƒyƒCƒ[ƒh‚Í2ƒoƒCƒgŒ¸‚é 
+		// ãƒšã‚¤ãƒ­ãƒ¼ãƒ‰ãƒ•ãƒ¬ãƒ¼ãƒ (éŸ³å£°) 
+		//   ã‚»ã‚¯ã‚¿å…ˆé ­2ãƒã‚¤ãƒˆã¯ç®¡ç†ã‚³ãƒ¼ãƒ‰ãªã®ã§ãƒšã‚¤ãƒ­ãƒ¼ãƒ‰ã¯2ãƒã‚¤ãƒˆæ¸›ã‚‹ 
 		for(i=0 ; i<pld ; i+=510) {
 			fwrite(payload_buff, 1, 512, fckh);
 			file_dsize += 512;
 		}
 
-		// ACMƒtƒŒ[ƒ€(‰æ‘œ) 
+		// ACMãƒ•ãƒ¬ãƒ¼ãƒ (ç”»åƒ) 
 		frame_dsize = acm_compless_frame(bmp, ref, qual, pWork, gopf);
 		fwrite(pWork, 1, frame_dsize, fckh);
 		file_dsize += frame_dsize;
 
-		// ƒtƒŒ[ƒ€BMPƒtƒ@ƒCƒ‹ƒNƒ[ƒY 
+		// ãƒ•ãƒ¬ãƒ¼ãƒ BMPãƒ•ã‚¡ã‚¤ãƒ«ã‚¯ãƒ­ãƒ¼ã‚º 
 		bmp_removehandle(bmp);
 		frame_num++;
 		file_number++;
 
-		// ŸƒtƒŒ[ƒ€BMPƒtƒ@ƒCƒ‹‚ÌŒŸõ‚Æ“Ç‚İ‚İ 
+		// æ¬¡ãƒ•ãƒ¬ãƒ¼ãƒ BMPãƒ•ã‚¡ã‚¤ãƒ«ã®æ¤œç´¢ã¨èª­ã¿è¾¼ã¿ 
 		fin_name = scan_inputfile(argv[1], file_number);
 		if (fin_name == NULL) break;
 
@@ -246,7 +246,7 @@ int main(int argc, char *argv[])
 	bmp_removehandle(ref);
 
 
-	// ƒwƒbƒ_‚Ì‘‚«‚İ 
+	// ãƒ˜ãƒƒãƒ€ã®æ›¸ãè¾¼ã¿ 
 	ckh.fnum = frame_num;
 	fseek(fckh, 0, SEEK_SET);
 	fwrite(&ckh, 1, sizeof(ck_header), fckh);
@@ -260,7 +260,7 @@ int main(int argc, char *argv[])
 
 
 /*****************************************
-	BMPƒtƒ@ƒCƒ‹‚ğƒƒ‚ƒŠ‚É“Ç‚İ‚Ş
+	BMPãƒ•ã‚¡ã‚¤ãƒ«ã‚’ãƒ¡ãƒ¢ãƒªã«èª­ã¿è¾¼ã‚€
  *****************************************/
 
 bmp_BITMAP_HANDLE *bmp_loadbmpfile(
@@ -275,49 +275,49 @@ bmp_BITMAP_HANDLE *bmp_loadbmpfile(
 	bmp_RGB32 *pPix;
 	FILE *fbmp;
 
-	// ƒtƒ@ƒCƒ‹‚ÌƒI[ƒvƒ“‚Æƒ`ƒFƒbƒN 
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ¼ãƒ—ãƒ³ã¨ãƒã‚§ãƒƒã‚¯ 
 	fbmp = fopen(bmpfilename,"rb");
 	if (fbmp == NULL) {
-		printf("[I] BMPƒtƒ@ƒCƒ‹ %s ‚ªŠJ‚¯‚Ü‚¹‚ñ.\n\n",bmpfilename);
+		printf("[ï¼] BMPãƒ•ã‚¡ã‚¤ãƒ« %s ãŒé–‹ã‘ã¾ã›ã‚“.\n\n",bmpfilename);
 		if (err != NULL) *err = bmp_ERR_FILEOPEN_FAIL;
 		return (NULL);
 	}
 
 	pBH = (bmp_BITMAP_HANDLE *)malloc( sizeof(bmp_BITMAP_HANDLE) );
 	if (pBH == NULL) {
-		printf("[I] ƒƒ‚ƒŠŠ„‚è“–‚Ä‚É¸”s‚µ‚Ü‚µ‚½.\n\n");
+		printf("[ï¼] ãƒ¡ãƒ¢ãƒªå‰²ã‚Šå½“ã¦ã«å¤±æ•—ã—ã¾ã—ãŸ.\n\n");
 		fclose(fbmp);
 		if (err != NULL) *err = bmp_ERR_MALLOC_FAIL;
 		return (NULL);
 	}
 
-	// ƒtƒ@ƒCƒ‹ƒwƒbƒ_‚Ì“Ç‚İ‚İ‚Æƒ`ƒFƒbƒN 
+	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ã®èª­ã¿è¾¼ã¿ã¨ãƒã‚§ãƒƒã‚¯ 
 	p = (unsigned char *) &(pBH->h);
 	for(i=0 ; i<sizeof(BMPFILEHEAD) ; i++) *p++ = (unsigned char)fgetc(fbmp);
 
 	if (pBH->h.bfType != bmp_BMPFILETYPE_ID) {
-		printf("[I] BMPƒtƒ@ƒCƒ‹‚Å‚Í‚ ‚è‚Ü‚¹‚ñ (%02X).\n\n",pBH->h.bfType);
+		printf("[ï¼] BMPãƒ•ã‚¡ã‚¤ãƒ«ã§ã¯ã‚ã‚Šã¾ã›ã‚“ (%02X).\n\n",pBH->h.bfType);
 		if (err != NULL) *err = bmp_ERR_NOTBMPFILE;
 		free(pBH);
 		fclose(fbmp);
 		return (NULL);
 	}
 	if (pBH->h.biBitCount < 16) {
-		printf("[I] ƒpƒŒƒbƒg•t‚«BMPƒtƒ@ƒCƒ‹‚É‚Í‘Î‰‚µ‚Ä‚¢‚Ü‚¹‚ñ (%d).\n\n",pBH->h.biBitCount);
+		printf("[ï¼] ãƒ‘ãƒ¬ãƒƒãƒˆä»˜ãBMPãƒ•ã‚¡ã‚¤ãƒ«ã«ã¯å¯¾å¿œã—ã¦ã„ã¾ã›ã‚“ (%d).\n\n",pBH->h.biBitCount);
 		if (err != NULL) *err = bmp_ERR_NOSUPPORTTYPE;
 		free(pBH);
 		fclose(fbmp);
 		return (NULL);
 	}
 
-	// ‰æ‘œƒf[ƒ^‚Ì“Ç‚İ‚İ 
+	// ç”»åƒãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿ 
 	x_size = pBH->h.biWidth;
 	y_size = pBH->h.biHeight;
 	pixbyte= pBH->h.biBitCount / 8;
 
 	pBH->pRGB_begin = (bmp_RGB32 *)malloc(x_size * y_size * sizeof(bmp_RGB32));
 	if (pBH->pRGB_begin == NULL) {
-		printf("[I] ƒƒ‚ƒŠŠ„‚è“–‚Ä‚É¸”s‚µ‚Ü‚µ‚½.\n\n");
+		printf("[ï¼] ãƒ¡ãƒ¢ãƒªå‰²ã‚Šå½“ã¦ã«å¤±æ•—ã—ã¾ã—ãŸ.\n\n");
 		free(pBH);
 		fclose(fbmp);
 		if (err != NULL) *err = bmp_ERR_MALLOC_FAIL;
@@ -337,9 +337,9 @@ bmp_BITMAP_HANDLE *bmp_loadbmpfile(
 				b = fgetc(fbmp);
 				g = fgetc(fbmp);
 				r = fgetc(fbmp);
-				if(pixbyte == 4) fgetc(fbmp);	/* ƒ|ƒCƒ“ƒ^‚ği‚ß‚éƒ_ƒ~[ */
+				if(pixbyte == 4) fgetc(fbmp);	/* ãƒã‚¤ãƒ³ã‚¿ã‚’é€²ã‚ã‚‹ãƒ€ãƒŸãƒ¼ */
 
-			} else {							// 16ƒrƒbƒgBMP(¦‹KŠiŠO‚Ì‚½‚ßVix‚Ì15bppBMP‚Ì‚İ‘Î‰) 
+			} else {							// 16ãƒ“ãƒƒãƒˆBMP(â€»è¦æ ¼å¤–ã®ãŸã‚Vixã®15bppBMPã®ã¿å¯¾å¿œ) 
 				c  = fgetc(fbmp);
 				c += fgetc(fbmp) << 8;
 				r  = ((c >> 10) & 31) << 3;
@@ -368,15 +368,15 @@ bmp_BITMAP_HANDLE *bmp_makebuffer(
 	bmp_BITMAP_HANDLE *pBH;
 	bmp_RGB32 *pPix;
 
-	// ƒnƒ“ƒhƒ‰‚Ìæ“¾ 
+	// ãƒãƒ³ãƒ‰ãƒ©ã®å–å¾— 
 	pBH = (bmp_BITMAP_HANDLE *)malloc( sizeof(bmp_BITMAP_HANDLE) );
 	if (pBH == NULL) {
-		printf("[I] ƒƒ‚ƒŠŠ„‚è“–‚Ä‚É¸”s‚µ‚Ü‚µ‚½.\n\n");
+		printf("[ï¼] ãƒ¡ãƒ¢ãƒªå‰²ã‚Šå½“ã¦ã«å¤±æ•—ã—ã¾ã—ãŸ.\n\n");
 		if (err != NULL) *err = bmp_ERR_MALLOC_FAIL;
 		return (NULL);
 	}
 
-	// ‰æ‘œƒoƒbƒtƒ@‚Ìì¬ 
+	// ç”»åƒãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ 
 	pBH->h.bfType         = bmp_BMPFILETYPE_ID;
 	pBH->h.bfSize         = sizeof(bmp_BITMAP_HANDLE);
 	pBH->h.biWidth        = x_size;
@@ -392,13 +392,13 @@ bmp_BITMAP_HANDLE *bmp_makebuffer(
 
 	pBH->pRGB_begin = (bmp_RGB32 *)malloc(x_size * y_size * sizeof(bmp_RGB32));
 	if (pBH->pRGB_begin == NULL) {
-		printf("[I] ƒƒ‚ƒŠŠ„‚è“–‚Ä‚É¸”s‚µ‚Ü‚µ‚½.\n\n");
+		printf("[ï¼] ãƒ¡ãƒ¢ãƒªå‰²ã‚Šå½“ã¦ã«å¤±æ•—ã—ã¾ã—ãŸ.\n\n");
 		free(pBH);
 		if (err != NULL) *err = bmp_ERR_MALLOC_FAIL;
 		return (NULL);
 	}
 
-	// ƒoƒbƒtƒ@‚Ì‰Šú‰» 
+	// ãƒãƒƒãƒ•ã‚¡ã®åˆæœŸåŒ– 
 	pPix = pBH->pRGB_begin;
 	for(i=0 ; i<x_size*y_size ; i++) *pPix++ = 0;
 	pBH->pRGB_end = pPix - 1;
@@ -422,28 +422,28 @@ void bmp_removehandle(
 
 
 /*****************************************
-	BMP‚ğCKƒR[ƒfƒbƒN‚Ì‚PƒtƒŒ[ƒ€‚Éˆ³k
+	BMPã‚’CKã‚³ãƒ¼ãƒ‡ãƒƒã‚¯ã®ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ ã«åœ§ç¸®
  *****************************************/
 
-#define ck_flamemark_p0		(0xe790)	// b’èPƒtƒŒ[ƒ€ƒ}[ƒJ[ 
+#define ck_flamemark_p0		(0xe790)	// æš«å®šPãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒ¼ã‚«ãƒ¼ 
 #define ck_flamemark_p1		(0x8191)
-#define ck_flamemark_i0		(0x4094)	// b’èIƒtƒŒ[ƒ€ƒ}[ƒJ[ 
+#define ck_flamemark_i0		(0x4094)	// æš«å®šIãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒ¼ã‚«ãƒ¼ 
 #define ck_flamemark_i1		(0x8e8c)
 
-int mcu_skip_check(					// MCUƒXƒLƒbƒv‚·‚é‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN (0 / 1‚ğ•Ô‚·)
-		mcu_rgb32 p[8][8],			// ŠY“–MCUƒuƒƒbƒN 
-		mcu_rgb32 r[8][8],			// ƒŠƒtƒ@ƒŒƒ“ƒXMCUƒuƒƒbƒN 
-		int qual					// ƒNƒIƒŠƒeƒBˆø”i0`6j
+int mcu_skip_check(					// MCUã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯ (0 / 1ã‚’è¿”ã™)
+		mcu_rgb32 p[8][8],			// è©²å½“MCUãƒ–ãƒ­ãƒƒã‚¯ 
+		mcu_rgb32 r[8][8],			// ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹MCUãƒ–ãƒ­ãƒƒã‚¯ 
+		int qual					// ã‚¯ã‚ªãƒªãƒ†ã‚£å¼•æ•°ï¼ˆ0ï½6ï¼‰
 	);
 
-int mcu_encode(						// MCU‚Ìƒ[ƒhƒTƒCƒY‚ğ•Ô‚· 
-		mcu_rgb32 p[8][8],			// R:G:B = 8:8:8‚ğ32bit‚ÉƒpƒbƒN‚µ‚½8x8ƒsƒNƒZƒ‹ 
-		int qual,					// ƒNƒIƒŠƒeƒBˆø”i0`6j
-		unsigned short *pMCU		// MCUƒf[ƒ^‘‚«‚İƒ|ƒCƒ“ƒ^ 
+int mcu_encode(						// MCUã®ãƒ¯ãƒ¼ãƒ‰ã‚µã‚¤ã‚ºã‚’è¿”ã™ 
+		mcu_rgb32 p[8][8],			// R:G:B = 8:8:8ã‚’32bitã«ãƒ‘ãƒƒã‚¯ã—ãŸ8x8ãƒ”ã‚¯ã‚»ãƒ« 
+		int qual,					// ã‚¯ã‚ªãƒªãƒ†ã‚£å¼•æ•°ï¼ˆ0ï½6ï¼‰
+		unsigned short *pMCU		// MCUãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿ãƒã‚¤ãƒ³ã‚¿ 
 	);
 
 
-unsigned long acm_compless_frame(	// ƒtƒŒ[ƒ€‚ÌƒoƒCƒgƒTƒCƒY‚ğ•Ô‚· 
+unsigned long acm_compless_frame(	// ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚ºã‚’è¿”ã™ 
 		bmp_BITMAP_HANDLE *pBH,
 		bmp_BITMAP_HANDLE *pREF,
 		int qual,
@@ -466,11 +466,11 @@ unsigned long acm_compless_frame(	// ƒtƒŒ[ƒ€‚ÌƒoƒCƒgƒTƒCƒY‚ğ•Ô‚·
 	s_no   = 0;
 
 
-	// ƒtƒŒ[ƒ€ƒf[ƒ^‚ğˆ³k 
+	// ãƒ•ãƒ¬ãƒ¼ãƒ ãƒ‡ãƒ¼ã‚¿ã‚’åœ§ç¸® 
 	for(y=0 ; y< pBH->h.biHeight ; y+=8) {
 		for(x=0 ; x< pBH->h.biWidth ; x+=8) {
 
-			// 8x8ƒsƒNƒZƒ‹‚ğØ‚èo‚· 
+			// 8x8ãƒ”ã‚¯ã‚»ãƒ«ã‚’åˆ‡ã‚Šå‡ºã™ 
 			for(yy=0 ; yy<8 ; yy++) {
 				for(xx=0 ; xx<8 ; xx++) {
 					if((x+xx)< pBH->h.biWidth && (y+yy)< pBH->h.biHeight) {
@@ -484,15 +484,15 @@ unsigned long acm_compless_frame(	// ƒtƒŒ[ƒ€‚ÌƒoƒCƒgƒTƒCƒY‚ğ•Ô‚·
 				}
 			}
 
-			// MCUƒGƒ“ƒR[ƒh
-			if ( mcu_skip_check(p, r, qual) && !rbflush ) {		// MCUƒXƒLƒbƒv 
+			// MCUã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰
+			if ( mcu_skip_check(p, r, qual) && !rbflush ) {		// MCUã‚¹ã‚­ãƒƒãƒ— 
 				mcu_code[0] = 0xffff;
 				n = 1;
 				skipmcu_num++;
 			} else {
 				n = mcu_encode(p, qual, mcu_code);
 
-				for(yy=0 ; yy<8 ; yy++) {						// QÆƒoƒbƒtƒ@‚ğXV 
+				for(yy=0 ; yy<8 ; yy++) {						// å‚ç…§ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–° 
 					for(xx=0 ; xx<8 ; xx++) {
 						if((x+xx)< pBH->h.biWidth && (y+yy)< pBH->h.biHeight) {
 							i = (y + yy)* pBH->h.biWidth + (x + xx);
@@ -502,7 +502,7 @@ unsigned long acm_compless_frame(	// ƒtƒŒ[ƒ€‚ÌƒoƒCƒgƒTƒCƒY‚ğ•Ô‚·
 				}
 			}
 
-			// ƒXƒgƒ‰ƒCƒvƒoƒbƒtƒ@‚ÉŠi”[ 
+			// ã‚¹ãƒˆãƒ©ã‚¤ãƒ—ãƒãƒƒãƒ•ã‚¡ã«æ ¼ç´ 
 			if ((s_size+n) > (STRIPBUFFER_SIZE/2)) {
 
 				for( ; s_size < (STRIPBUFFER_SIZE/2) ; s_size++,pACM++) {
@@ -522,7 +522,7 @@ unsigned long acm_compless_frame(	// ƒtƒŒ[ƒ€‚ÌƒoƒCƒgƒTƒCƒY‚ğ•Ô‚·
 		}
 	}
 
-	// ƒtƒŒ[ƒ€‚ÌÅIƒXƒgƒ‰ƒCƒv‚Ìˆ— 
+	// ãƒ•ãƒ¬ãƒ¼ãƒ ã®æœ€çµ‚ã‚¹ãƒˆãƒ©ã‚¤ãƒ—ã®å‡¦ç† 
 	for( ; s_size < (STRIPBUFFER_SIZE/2) ; s_size++,pACM++) {
 		if (s_size & 1) *pACM = 0x8191; else *pACM = 0xe790;
 	}
@@ -541,10 +541,10 @@ unsigned long acm_compless_frame(	// ƒtƒŒ[ƒ€‚ÌƒoƒCƒgƒTƒCƒY‚ğ•Ô‚·
 
 
 /*****************************************
-	‚W~‚WŒÂ‚Ìƒf[ƒ^—ñ‚©‚ç‚l‚b‚t‚ğ¶¬
+	ï¼˜Ã—ï¼˜å€‹ã®ãƒ‡ãƒ¼ã‚¿åˆ—ã‹ã‚‰ï¼­ï¼£ï¼µã‚’ç”Ÿæˆ
  *****************************************/
 
-void mcu_conv_yuv420(				// YUV420•ÏŠ· 
+void mcu_conv_yuv420(				// YUV420å¤‰æ› 
 		mcu_rgb32 p[8][8],
 		float y[8][8],
 		float u[4][4],
@@ -552,16 +552,16 @@ void mcu_conv_yuv420(				// YUV420•ÏŠ·
 	);
 
 int dcb_encode(
-		int psrc[],					// Œ³ƒf[ƒ^”z—ñ (ˆø”)
-		int qual,					// ˆ³kƒNƒIƒŠƒeƒB’l (ˆø”)
-		unsigned short *pDCB		// DCB‘‚«‚İƒ|ƒCƒ“ƒ^ (ˆø”)
+		int psrc[],					// å…ƒãƒ‡ãƒ¼ã‚¿é…åˆ— (å¼•æ•°)
+		int qual,					// åœ§ç¸®ã‚¯ã‚ªãƒªãƒ†ã‚£å€¤ (å¼•æ•°)
+		unsigned short *pDCB		// DCBæ›¸ãè¾¼ã¿ãƒã‚¤ãƒ³ã‚¿ (å¼•æ•°)
 	);
 
 
-int mcu_encode(						// MCU‚Ìƒ[ƒhƒTƒCƒY‚ğ•Ô‚· 
-		mcu_rgb32 p[8][8],			// R:G:B = 8:8:8‚ğ32bit‚ÉƒpƒbƒN‚µ‚½8x8ƒsƒNƒZƒ‹ 
-		int qual,					// ƒNƒIƒŠƒeƒBˆø”i0`6j
-		unsigned short *pMCU		// MCUƒf[ƒ^‘‚«‚İƒ|ƒCƒ“ƒ^ 
+int mcu_encode(						// MCUã®ãƒ¯ãƒ¼ãƒ‰ã‚µã‚¤ã‚ºã‚’è¿”ã™ 
+		mcu_rgb32 p[8][8],			// R:G:B = 8:8:8ã‚’32bitã«ãƒ‘ãƒƒã‚¯ã—ãŸ8x8ãƒ”ã‚¯ã‚»ãƒ« 
+		int qual,					// ã‚¯ã‚ªãƒªãƒ†ã‚£å¼•æ•°ï¼ˆ0ï½6ï¼‰
+		unsigned short *pMCU		// MCUãƒ‡ãƒ¼ã‚¿æ›¸ãè¾¼ã¿ãƒã‚¤ãƒ³ã‚¿ 
 	)
 {
 	int i,j,x,y,n,mcu_n;
@@ -569,18 +569,18 @@ int mcu_encode(						// MCU‚Ìƒ[ƒhƒTƒCƒY‚ğ•Ô‚·
 	float ty[8][8],tu[4][4],tv[4][4];
 	int c,psrc[16];
 
-	// k¬‚x¬•ª‹–—eŒë·ƒe[ƒuƒ‹ 
+	// ç¸®å°ï¼¹æˆåˆ†è¨±å®¹èª¤å·®ãƒ†ãƒ¼ãƒ–ãƒ« 
 	float fye_sl[10] ={ 2048.0, 2048.0, 1536.0, 1024.0, 576.0, 320.0, 192.0, 0.0, 0.0, 0.0};
 
 	mcu_n = 0;
 
-	// RGB¨YUV•ÏŠ· 
+	// RGBâ†’YUVå¤‰æ› 
 	mcu_conv_yuv420(p, ty, tu, tv);
 
-	/* ‹P“x•â³‚â—Êq‰»‚ğs‚¤ê‡‚Í‚±‚±‚Éˆ—‚ğ“ü‚ê‚é */
+	/* è¼åº¦è£œæ­£ã‚„é‡å­åŒ–ã‚’è¡Œã†å ´åˆã¯ã“ã“ã«å‡¦ç†ã‚’å…¥ã‚Œã‚‹ */
 
 
-	// U¬•ª‚ÌDCB‚ğì¬ 
+	// Uæˆåˆ†ã®DCBã‚’ä½œæˆ 
 	for(i=0 ; i<4 ; i++) {
 		for(j=0 ; j<4 ; j++) {
 			psrc[i*4 + j] = (int)tu[i][j];
@@ -590,7 +590,7 @@ int mcu_encode(						// MCU‚Ìƒ[ƒhƒTƒCƒY‚ğ•Ô‚·
 	mcu_n += c;
 	pMCU  += c;
 
-	// V¬•ª‚ÌDCB‚ğì¬ 
+	// Væˆåˆ†ã®DCBã‚’ä½œæˆ 
 	for(i=0 ; i<4 ; i++) {
 		for(j=0 ; j<4 ; j++) {
 			psrc[i*4 + j] = (int)tv[i][j];
@@ -601,7 +601,7 @@ int mcu_encode(						// MCU‚Ìƒ[ƒhƒTƒCƒY‚ğ•Ô‚·
 	pMCU  += c;
 
 
-	// Y¬•ª‚ÌDCB‚ğì¬ 
+	// Yæˆåˆ†ã®DCBã‚’ä½œæˆ 
 	fye = 0.0;
 	for(i=0 ; i<4 ; i++) {
 		for(j=0 ; j<4 ; j++) {
@@ -645,7 +645,7 @@ int mcu_encode(						// MCU‚Ìƒ[ƒhƒTƒCƒY‚ğ•Ô‚·
 }
 
 
-void mcu_conv_yuv420(				// YUV420•ÏŠ· 
+void mcu_conv_yuv420(				// YUV420å¤‰æ› 
 		mcu_rgb32 p[8][8],
 		float y[8][8],
 		float u[4][4],
@@ -656,7 +656,7 @@ void mcu_conv_yuv420(				// YUV420•ÏŠ·
 	float fr,fg,fb,fu,fv;
 	float tu[8][8],tv[8][8];
 
-	// RGB¨YUV•ÏŠ· 
+	// RGBâ†’YUVå¤‰æ› 
 	for(i=0 ; i<8 ; i++) {
 		for(j=0 ; j<8 ; j++) {
 			fr = (float)mcu_rgb32_red  ( p[i][j] );
@@ -668,7 +668,7 @@ void mcu_conv_yuv420(				// YUV420•ÏŠ·
 		}
 	}
 
-	// YUV444¨YUV420•ÏŠ· 
+	// YUV444â†’YUV420å¤‰æ› 
 	for(i=0 ; i<4 ; i++) {
 		for(j=0 ; j<4 ; j++) {
 			fu = (tu[i*2][j*2] + tu[i*2][j*2+1] + tu[i*2+1][j*2] + tu[i*2+1][j*2+1]) / 4;
@@ -691,10 +691,10 @@ void mcu_conv_yuv420(				// YUV420•ÏŠ·
 
 
 /***************************************
-	‚S~‚SŒÂ‚Ìƒf[ƒ^—ñ‚ğ‚c‚b‚a‚Éˆ³k
+	ï¼”Ã—ï¼”å€‹ã®ãƒ‡ãƒ¼ã‚¿åˆ—ã‚’ï¼¤ï¼£ï¼¢ã«åœ§ç¸®
  ***************************************/
 
-/* ƒƒfƒBƒAƒ“ƒtƒBƒ‹ƒ^•Î·‚©‚çd—v“x‚ğZo */
+/* ãƒ¡ãƒ‡ã‚£ã‚¢ãƒ³ãƒ•ã‚£ãƒ«ã‚¿åå·®ã‹ã‚‰é‡è¦åº¦ã‚’ç®—å‡º */
 /*
 	256 +          ----------
 	    |         /:        :\
@@ -705,15 +705,15 @@ void mcu_conv_yuv420(				// YUV420•ÏŠ·
 	  0 +-------:--:--------:---:-----------+
 	    0      p0 p1       p2  p3          255 : m
 */
-int calc_imp_encoding(int m)		// ƒsƒNƒZƒ‹•Î· 0`255
+int calc_imp_encoding(int m)		// ãƒ”ã‚¯ã‚»ãƒ«åå·® 0ï½255
 {
-	int e0 = 128;			// •Î·–³‚µ‚Ìê‡‚Ìd—v“x 
-	int el = 64;			// ¬•Î·‘¤‚Ì–O˜ad—v“x 
-	int eh = 24;			// ‘å•Î·‘¤‚Ì–O˜ad—v“x 
-	int p0 = 8;				// d—v“xŒù”z‚ÌŠJn•Î·’l 
-	int p1 = 48;			// Å‘åd—v“xƒGƒŠƒA‚ÌŠJn 
-	int p2 = 96;			// Å‘åd—v“xƒGƒŠƒA‚ÌI—¹ 
-	int p3 = 192;			// d—v“xŒù”z‚ÌŠJn•Î·’l 
+	int e0 = 128;			// åå·®ç„¡ã—ã®å ´åˆã®é‡è¦åº¦ 
+	int el = 64;			// å°åå·®å´ã®é£½å’Œé‡è¦åº¦ 
+	int eh = 24;			// å¤§åå·®å´ã®é£½å’Œé‡è¦åº¦ 
+	int p0 = 8;				// é‡è¦åº¦å‹¾é…ã®é–‹å§‹åå·®å€¤ 
+	int p1 = 48;			// æœ€å¤§é‡è¦åº¦ã‚¨ãƒªã‚¢ã®é–‹å§‹ 
+	int p2 = 96;			// æœ€å¤§é‡è¦åº¦ã‚¨ãƒªã‚¢ã®çµ‚äº† 
+	int p3 = 192;			// é‡è¦åº¦å‹¾é…ã®é–‹å§‹åå·®å€¤ 
 
 	if (m == 0) {
 		return (e0);
@@ -732,7 +732,7 @@ int calc_imp_encoding(int m)		// ƒsƒNƒZƒ‹•Î· 0`255
 	return (0);
 }
 
-/* ƒeƒXƒgˆ³k‚ğs‚¤ŠÖ” */
+/* ãƒ†ã‚¹ãƒˆåœ§ç¸®ã‚’è¡Œã†é–¢æ•° */
 float test_dcb_encode(int an,int a[],int imp[],int psrc[],int ptmp[])
 {
 	int i,j,m;
@@ -740,9 +740,9 @@ float test_dcb_encode(int an,int a[],int imp[],int psrc[],int ptmp[])
 	unsigned long esum;
 	float e=0.0;
 
-	/* a[]‚Í—v‘f 0`an-1 ‚Ì‡‚Å¸‡‚É•À‚ñ‚Å‚¢‚é  */
-	/* psrc[]‚Í—v‘f 0`15 ‚Ì‡‚Å¸‡‚É•À‚ñ‚Å‚¢‚é */
-	/* imp[]‚Ípsrc[]‚Ì“¯‚¶—v‘f‚Ìd—v“x‚ğ•\‚·     */
+	/* a[]ã¯è¦ç´  0ï½an-1 ã®é †ã§æ˜‡é †ã«ä¸¦ã‚“ã§ã„ã‚‹  */
+	/* psrc[]ã¯è¦ç´  0ï½15 ã®é †ã§æ˜‡é †ã«ä¸¦ã‚“ã§ã„ã‚‹ */
+	/* imp[]ã¯psrc[]ã®åŒã˜è¦ç´ ã®é‡è¦åº¦ã‚’è¡¨ã™     */
 
 	m = 0;
 	esum = 0;
@@ -756,7 +756,7 @@ float test_dcb_encode(int an,int a[],int imp[],int psrc[],int ptmp[])
 		}
 		ptmp[i] = m;
 		ep = psrc[i] - a[m];
-		esum += (ep * ep * imp[i]);					// Å¬©æ–@‚ÅŒë·‚ğ—İÏ 
+		esum += (ep * ep * imp[i]);					// æœ€å°è‡ªä¹—æ³•ã§èª¤å·®ã‚’ç´¯ç© 
 	}
 
 	e = (float)esum / (255.0 * 255.0);
@@ -764,7 +764,7 @@ float test_dcb_encode(int an,int a[],int imp[],int psrc[],int ptmp[])
 	return e;
 }
 
-/* raw encoding‚ğs‚·‚éŠÖ” */
+/* raw encodingã‚’è©¦è¡Œã™ã‚‹é–¢æ•° */
 float test_raw_encoding(int imp[],int psrc[],int pdat[])
 {
 	int i;
@@ -775,14 +775,14 @@ float test_raw_encoding(int imp[],int psrc[],int pdat[])
 	return (0.0);
 }
 
-/* 0/1bit encoding‚ğs‚·‚éŠÖ” */
+/* 0/1bit encodingã‚’è©¦è¡Œã™ã‚‹é–¢æ•° */
 float test_01bit_encoding(int imp[],int psrc[],int pdat[],float er_qual)
 {
 	int i,n,s,ep0,ep1,pt,p0,p1;
 	int impsum,psum,esum,impsum0,impsum1;
-	float e0,e1;							// Å‘åŒë·’l‚Í4096 (256~16)
+	float e0,e1;							// æœ€å¤§èª¤å·®å€¤ã¯4096 (256Ã—16)
 
-	// ƒqƒXƒgƒOƒ‰ƒ€dS‚ğZo 
+	// ãƒ’ã‚¹ãƒˆã‚°ãƒ©ãƒ é‡å¿ƒã‚’ç®—å‡º 
 	impsum = 0;
 	psum = 0;
 	for(i=0 ; i<16 ; i++) {
@@ -792,7 +792,7 @@ float test_01bit_encoding(int imp[],int psrc[],int pdat[],float er_qual)
 	pt = psum / impsum;
 	if ((psum % impsum) > (impsum >> 1)) pt++;
 
-	// 0bit encoding‚ÌŒë·ŒvZ‚Æƒ}ƒbƒsƒ“ƒO 
+	// 0bit encodingã®èª¤å·®è¨ˆç®—ã¨ãƒãƒƒãƒ”ãƒ³ã‚° 
 	esum = 0;
 	for(i=0 ; i<16 ; i++) {
 		ep0 = psrc[i] - pt;
@@ -805,8 +805,8 @@ float test_01bit_encoding(int imp[],int psrc[],int pdat[],float er_qual)
 	if (e0 < er_qual) return e0;
 
 
-	// ƒqƒXƒgƒOƒ‰ƒ€‚Ì‚Q“_dS‚ğZo 
-	impsum0 = 1;						// dSˆÊ’u‚Å2‚Â‚É•ªŠ„‚µ‚ÄŒÂ•Ê‚ÉdS‚ğŒvZ 
+	// ãƒ’ã‚¹ãƒˆã‚°ãƒ©ãƒ ã®ï¼’ç‚¹é‡å¿ƒã‚’ç®—å‡º 
+	impsum0 = 1;						// é‡å¿ƒä½ç½®ã§2ã¤ã«åˆ†å‰²ã—ã¦å€‹åˆ¥ã«é‡å¿ƒã‚’è¨ˆç®— 
 	psum = 0;
 	for(i=0 ; i<16 ; i++) {
 		if (psrc[i] >= pt) break;
@@ -825,19 +825,19 @@ float test_01bit_encoding(int imp[],int psrc[],int pdat[],float er_qual)
 	p1 = psum / impsum1;
 	if ((psum % impsum1) > (impsum1 >> 1)) p1++;
 
-	// 1bit encoding‚ÌŒë·ŒvZ‚Æƒ}ƒbƒsƒ“ƒO 
+	// 1bit encodingã®èª¤å·®è¨ˆç®—ã¨ãƒãƒƒãƒ”ãƒ³ã‚° 
 	i = p1 - p0;
-	if (i >= 131) {				// n = 0x60 ` 0x7f : s = +131 ` +255 (n*4+131)
+	if (i >= 131) {				// n = 0x60 ï½ 0x7f : s = +131 ï½ +255 (n*4+131)
 		n = (i - 131) >> 2;
 		if (n > 31) n = 31;
 		s = (n << 2) + 131;
 		n += 0x60;
-	} else if (i >= 66) {		// n = 0x40 ` 0x5f : s = +66 ` +128 (n*2+66)
+	} else if (i >= 66) {		// n = 0x40 ï½ 0x5f : s = +66 ï½ +128 (n*2+66)
 		n = (i - 66) >> 1;
 		if (n > 31) n = 31;
 		s = (n << 1) + 66;
 		n += 0x40;
-	} else {					// n = 0x01 ` 0x3f : s =  +2 `  +64 (n+1)
+	} else {					// n = 0x01 ï½ 0x3f : s =  +2 ï½  +64 (n+1)
 		n = i - 1;
 		if (n < 1) n = 1; else if (n > 63) n = 63;
 		s = n + 1;
@@ -869,8 +869,8 @@ float test_01bit_encoding(int imp[],int psrc[],int pdat[],float er_qual)
 	return e1;
 }
 
-/* 2bit encoding‚ğs‚·‚éŠÖ” */
-// ŠJn’l‚ÆI—¹’l‚©‚çmode’l‚ğ‹tZ‚·‚é 
+/* 2bit encodingã‚’è©¦è¡Œã™ã‚‹é–¢æ•° */
+// é–‹å§‹å€¤ã¨çµ‚äº†å€¤ã‹ã‚‰modeå€¤ã‚’é€†ç®—ã™ã‚‹ 
 int test_2bit_encoding_span(int db,int de,int st)
 {
 	int p0,p1,span;
@@ -878,10 +878,10 @@ int test_2bit_encoding_span(int db,int de,int st)
 
 	p0 = db;
 
-	if (st) {		// ƒmƒ“ƒŠƒjƒAƒXƒeƒbƒsƒ“ƒO 
+	if (st) {		// ãƒãƒ³ãƒªãƒ‹ã‚¢ã‚¹ãƒ†ãƒƒãƒ”ãƒ³ã‚° 
 		span = (de - db) / 5;
 		code = 0x03;
-	} else {		// ƒŠƒjƒAƒXƒeƒbƒsƒ“ƒO 
+	} else {		// ãƒªãƒ‹ã‚¢ã‚¹ãƒ†ãƒƒãƒ”ãƒ³ã‚° 
 		span = (de - db) / 3;
 		code = 0x01;
 	}
@@ -910,16 +910,16 @@ float test_2bit_encoding(int imp[],int psrc[],int pdat[],int reduce,float er_qua
 {
 	int pt,i,n,mode,p,s,a[8],ptmp[16];
 	int rloop,pb,pe,dlb,dle,dhb,dhe;
-	float e,eq = 5000.0;						// Å‘åŒë·’l‚Í4096 (256~16)
+	float e,eq = 5000.0;						// æœ€å¤§èª¤å·®å€¤ã¯4096 (256Ã—16)
 
-//	// k¬Y¬•ªƒRƒ“ƒgƒ[ƒ‹ 
+//	// ç¸®å°Yæˆåˆ†ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ« 
 //	if (reduce) {
-//		reduce = 2;		// ƒŠƒjƒAƒXƒeƒbƒsƒ“ƒO‚Ì‚İŒŸõ 
+//		reduce = 2;		// ãƒªãƒ‹ã‚¢ã‚¹ãƒ†ãƒƒãƒ”ãƒ³ã‚°ã®ã¿æ¤œç´¢ 
 //	} else {
-//		reduce = 1;		// ƒŠƒjƒAEƒmƒ“ƒŠƒjƒA—¼•ûŒŸõ 
+//		reduce = 1;		// ãƒªãƒ‹ã‚¢ãƒ»ãƒãƒ³ãƒªãƒ‹ã‚¢ä¸¡æ–¹æ¤œç´¢ 
 //	}
 
-	// •ª•zƒf[ƒ^‚ÌãŒÀ‚Æ‰ºŒÀ‚ğŒŸõ 
+	// åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿ã®ä¸Šé™ã¨ä¸‹é™ã‚’æ¤œç´¢ 
 	dlb = psrc[0];
 	dhb = psrc[15];
 
@@ -936,16 +936,16 @@ float test_2bit_encoding(int imp[],int psrc[],int pdat[],int reduce,float er_qua
 	if (dlb > dle) dle = dlb;
 	if (dhe < dhb) dhb = dhe;
 
-	// ƒf[ƒ^•ª•z”ÍˆÍ‚Åƒ}ƒbƒsƒ“ƒO‚ğs 
+	// ãƒ‡ãƒ¼ã‚¿åˆ†å¸ƒç¯„å›²ã§ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’è©¦è¡Œ 
 	for(rloop=0 ; rloop<1 ; rloop++) {
-		for(pb=dlb ; pb<=dle ; pb+=2) {				// ŠJn’l‚ğ‚¸‚ç‚µ‚ÄƒXƒLƒƒƒ“ 
-			for(pe=dhe ; pe>=dhb ; pe-=2) {			// I—¹’l‚ğ‚¸‚ç‚µ‚ÄƒXƒLƒƒƒ“ 
+		for(pb=dlb ; pb<=dle ; pb+=2) {				// é–‹å§‹å€¤ã‚’ãšã‚‰ã—ã¦ã‚¹ã‚­ãƒ£ãƒ³ 
+			for(pe=dhe ; pe>=dhb ; pe-=2) {			// çµ‚äº†å€¤ã‚’ãšã‚‰ã—ã¦ã‚¹ã‚­ãƒ£ãƒ³ 
 
 				mode = test_2bit_encoding_span(pb, pe, rloop);
 
 				p = (mode >> 8);
-			/* dcb_decode‚©‚çƒRƒs[ */
-				if (mode & 0x80) {				// QÆƒe[ƒuƒ‹‚Ìì¬ 
+			/* dcb_decodeã‹ã‚‰ã‚³ãƒ”ãƒ¼ */
+				if (mode & 0x80) {				// å‚ç…§ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ 
 					if (mode & 0x40) {
 						s = ((mode & 0x38) >> 1) + 35;
 					} else {
@@ -955,16 +955,16 @@ float test_2bit_encoding(int imp[],int psrc[],int pdat[],int reduce,float er_qua
 					s = ((mode & 0x78) >> 3) + 1;
 				}
 
-				for(i=0 ; i<4 ; i++) {			// ƒŠƒjƒAƒXƒeƒbƒsƒ“ƒO 
+				for(i=0 ; i<4 ; i++) {			// ãƒªãƒ‹ã‚¢ã‚¹ãƒ†ãƒƒãƒ”ãƒ³ã‚° 
 					if (p > 255) p = 255;
 					a[i] = p;
 					p += s;
-					if ((mode & 0x02) && i==1) p += (s << 1); // ƒmƒ“ƒŠƒjƒAƒXƒeƒbƒsƒ“ƒO 
+					if ((mode & 0x02) && i==1) p += (s << 1); // ãƒãƒ³ãƒªãƒ‹ã‚¢ã‚¹ãƒ†ãƒƒãƒ”ãƒ³ã‚° 
 				}
-			/* ‚±‚±‚Ü‚Å */
+			/* ã“ã“ã¾ã§ */
 
 				e = test_dcb_encode(4, a, imp, psrc, ptmp);
-				if (e < eq) {						// Œë·‚ª¬‚³‚¢‚à‚Ì‚ğ‘I‘ğ 
+				if (e < eq) {						// èª¤å·®ãŒå°ã•ã„ã‚‚ã®ã‚’é¸æŠ 
 					eq = e;
 					if (rloop==0 && reduce) {
 						pdat[0] = mode | 0x04;
@@ -978,19 +978,19 @@ float test_2bit_encoding(int imp[],int psrc[],int pdat[],int reduce,float er_qua
 			}
 		}
 
-		if (reduce) break;		// Yr‚ÍƒŠƒjƒAƒ}ƒbƒsƒ“ƒO‚Ì‚İ 
+		if (reduce) break;		// Yrã¯ãƒªãƒ‹ã‚¢ãƒãƒƒãƒ”ãƒ³ã‚°ã®ã¿ 
 	}
 
 
 #if 0
-	for(n=0x00 ; n<=0x3f ; n+=reduce) {			// ƒXƒeƒbƒsƒ“ƒO‚ğƒXƒLƒƒƒ“(type1,type2) 
-		for(pt=dlb ; pt<=dle ; pt++) {			// ƒf[ƒ^‚ª‘¶İ‚·‚é”ÍˆÍ‚ğ­‚µ‚¸‚Â‚¸‚ç‚µ‚ÄƒXƒLƒƒƒ“ 
+	for(n=0x00 ; n<=0x3f ; n+=reduce) {			// ã‚¹ãƒ†ãƒƒãƒ”ãƒ³ã‚°ã‚’ã‚¹ã‚­ãƒ£ãƒ³(type1,type2) 
+		for(pt=dlb ; pt<=dle ; pt++) {			// ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹ç¯„å›²ã‚’å°‘ã—ãšã¤ãšã‚‰ã—ã¦ã‚¹ã‚­ãƒ£ãƒ³ 
 
 			mode = ((n & 0x3e) << 2) | ((n & 1) << 1);
 			p    = pt;
 
-			/* dcb_decode‚©‚çƒRƒs[ */
-				if (mode & 0x80) {				// QÆƒe[ƒuƒ‹‚Ìì¬ 
+			/* dcb_decodeã‹ã‚‰ã‚³ãƒ”ãƒ¼ */
+				if (mode & 0x80) {				// å‚ç…§ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ 
 					if (mode & 0x40) {
 						s = ((mode & 0x38) >> 1) + 35;
 					} else {
@@ -1000,17 +1000,17 @@ float test_2bit_encoding(int imp[],int psrc[],int pdat[],int reduce,float er_qua
 					s = ((mode & 0x78) >> 3) + 1;
 				}
 
-				for(i=0 ; i<4 ; i++) {			// ƒŠƒjƒAƒXƒeƒbƒsƒ“ƒO 
+				for(i=0 ; i<4 ; i++) {			// ãƒªãƒ‹ã‚¢ã‚¹ãƒ†ãƒƒãƒ”ãƒ³ã‚° 
 					if (p > 255) p = 255;
 					a[i] = p;
 					p += s;
-					if ((mode & 0x02) && i==1) p += (s << 1); // ƒmƒ“ƒŠƒjƒAƒXƒeƒbƒsƒ“ƒO 
+					if ((mode & 0x02) && i==1) p += (s << 1); // ãƒãƒ³ãƒªãƒ‹ã‚¢ã‚¹ãƒ†ãƒƒãƒ”ãƒ³ã‚° 
 				}
-			/* ‚±‚±‚Ü‚Å */
+			/* ã“ã“ã¾ã§ */
 
-			if (dhb <= a[3] && a[3] <= dhe) {	// ƒ}ƒbƒsƒ“ƒO—\’è”ÍˆÍ‚Ås‚·‚é 
+			if (dhb <= a[3] && a[3] <= dhe) {	// ãƒãƒƒãƒ”ãƒ³ã‚°äºˆå®šç¯„å›²ã§è©¦è¡Œã™ã‚‹ 
 				e = test_dcb_encode(4, a, imp, psrc, ptmp);
-				if (e < eq) {						// Œë·‚ª¬‚³‚¢‚à‚Ì‚ğ‘I‘ğ 
+				if (e < eq) {						// èª¤å·®ãŒå°ã•ã„ã‚‚ã®ã‚’é¸æŠ 
 					eq = e;
 					if (reduce == 2) {
 						pdat[0] = (pt << 8) | mode | 0x05;
@@ -1029,8 +1029,8 @@ float test_2bit_encoding(int imp[],int psrc[],int pdat[],int reduce,float er_qua
 	return eq;
 }
 
-/* 3bit encoding‚ğs‚·‚éŠÖ” */
-// ŠJn’l‚ÆI—¹’l‚©‚çmode’l‚ğ‹tZ‚·‚é 
+/* 3bit encodingã‚’è©¦è¡Œã™ã‚‹é–¢æ•° */
+// é–‹å§‹å€¤ã¨çµ‚äº†å€¤ã‹ã‚‰modeå€¤ã‚’é€†ç®—ã™ã‚‹ 
 int test_3bit_encoding_span(int db,int de)
 {
 	int p0,p1,span;
@@ -1051,9 +1051,9 @@ float test_3bit_encoding(int imp[],int psrc[],int pdat[],float er_qual)
 {
 	int pt,i,n,mode,p,s,a[8],ptmp[16];
 	int pb,pe,dlb,dle,dhb,dhe;
-	float e,eq = 5000.0;						// Å‘åŒë·’l‚Í4096 (256~16)
+	float e,eq = 5000.0;						// æœ€å¤§èª¤å·®å€¤ã¯4096 (256Ã—16)
 
-	// •ª•zƒf[ƒ^‚ÌãŒÀ‚Æ‰ºŒÀ‚ğŒŸõ 
+	// åˆ†å¸ƒãƒ‡ãƒ¼ã‚¿ã®ä¸Šé™ã¨ä¸‹é™ã‚’æ¤œç´¢ 
 	dlb = psrc[0];
 	dhb = psrc[15];
 
@@ -1070,25 +1070,25 @@ float test_3bit_encoding(int imp[],int psrc[],int pdat[],float er_qual)
 	if (dlb > dle) dle = dlb;
 	if (dhe < dhb) dhb = dhe;
 
-	// ƒf[ƒ^•ª•z”ÍˆÍ‚Åƒ}ƒbƒsƒ“ƒO‚ğs 
-	for(pb=dlb ; pb<=dle ; pb++) {				// ŠJn’l‚ğ‚¸‚ç‚µ‚ÄƒXƒLƒƒƒ“ 
-		for(pe=dhe ; pe>=dhb ; pe--) {			// I—¹’l‚ğ‚¸‚ç‚µ‚ÄƒXƒLƒƒƒ“ 
+	// ãƒ‡ãƒ¼ã‚¿åˆ†å¸ƒç¯„å›²ã§ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’è©¦è¡Œ 
+	for(pb=dlb ; pb<=dle ; pb++) {				// é–‹å§‹å€¤ã‚’ãšã‚‰ã—ã¦ã‚¹ã‚­ãƒ£ãƒ³ 
+		for(pe=dhe ; pe>=dhb ; pe--) {			// çµ‚äº†å€¤ã‚’ãšã‚‰ã—ã¦ã‚¹ã‚­ãƒ£ãƒ³ 
 
 			mode = test_3bit_encoding_span(pb, pe);
 
 			p = (mode >> 8);
-			/* dcb_decode‚©‚çƒRƒs[ */
-				s = ((mode & 0xf8) >> 3) + 1;	// QÆƒe[ƒuƒ‹‚Ìì¬ 
+			/* dcb_decodeã‹ã‚‰ã‚³ãƒ”ãƒ¼ */
+				s = ((mode & 0xf8) >> 3) + 1;	// å‚ç…§ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ 
 
 				for(i=0 ; i<8 ; i++) {
 					if (p > 255) p = 255;
 					a[i] = p;
 					p += s;
 				}
-			/* ‚±‚±‚Ü‚Å */
+			/* ã“ã“ã¾ã§ */
 
 			e = test_dcb_encode(8, a, imp, psrc, ptmp);
-			if (e < eq) {						// Œë·‚ª¬‚³‚¢‚à‚Ì‚ğ‘I‘ğ 
+			if (e < eq) {						// èª¤å·®ãŒå°ã•ã„ã‚‚ã®ã‚’é¸æŠ 
 				eq = e;
 				pdat[0] = mode;
 				for(i=0 ; i<16 ; i++) pdat[i+1] = ptmp[i];
@@ -1110,25 +1110,25 @@ float test_3bit_encoding(int imp[],int psrc[],int pdat[],float er_qual)
 	dhb = dhb - 16;
 	if (dhb < (0+8)) dhb = (0+8);
 
-	// ƒf[ƒ^•ª•z”ÍˆÍ‚Åƒ}ƒbƒsƒ“ƒO‚ğs 
-	for(n=0x00 ; n<=0x1f ; n++) {				// ƒXƒeƒbƒsƒ“ƒO‚ğƒXƒLƒƒƒ“
-		for(pt=dlb ; pt<=dle ; pt++) {			// ƒf[ƒ^‚ª‘¶İ‚·‚é”ÍˆÍ‚ğ­‚µ‚¸‚Â‚¸‚ç‚µ‚ÄƒXƒLƒƒƒ“ 
+	// ãƒ‡ãƒ¼ã‚¿åˆ†å¸ƒç¯„å›²ã§ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’è©¦è¡Œ 
+	for(n=0x00 ; n<=0x1f ; n++) {				// ã‚¹ãƒ†ãƒƒãƒ”ãƒ³ã‚°ã‚’ã‚¹ã‚­ãƒ£ãƒ³
+		for(pt=dlb ; pt<=dle ; pt++) {			// ãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã™ã‚‹ç¯„å›²ã‚’å°‘ã—ãšã¤ãšã‚‰ã—ã¦ã‚¹ã‚­ãƒ£ãƒ³ 
 			mode = (n << 3);
 			p    = pt;
 
-			/* dcb_decode‚©‚çƒRƒs[ */
-				s = ((mode & 0xf8) >> 3) + 1;	// QÆƒe[ƒuƒ‹‚Ìì¬ 
+			/* dcb_decodeã‹ã‚‰ã‚³ãƒ”ãƒ¼ */
+				s = ((mode & 0xf8) >> 3) + 1;	// å‚ç…§ãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œæˆ 
 
 				for(i=0 ; i<8 ; i++) {
 					if (p > 255) p = 255;
 					a[i] = p;
 					p += s;
 				}
-			/* ‚±‚±‚Ü‚Å */
+			/* ã“ã“ã¾ã§ */
 
-			if (dhb <= a[7] && a[7] <= dhe) {	// ƒ}ƒbƒsƒ“ƒO—\’è”ÍˆÍ‚Ås‚·‚é 
+			if (dhb <= a[7] && a[7] <= dhe) {	// ãƒãƒƒãƒ”ãƒ³ã‚°äºˆå®šç¯„å›²ã§è©¦è¡Œã™ã‚‹ 
 				e = test_dcb_encode(8, a, imp, psrc, ptmp);
-				if (e < eq) {						// Œë·‚ª¬‚³‚¢‚à‚Ì‚ğ‘I‘ğ 
+				if (e < eq) {						// èª¤å·®ãŒå°ã•ã„ã‚‚ã®ã‚’é¸æŠ 
 					eq = e;
 					pdat[0] = (pt << 8) | mode | 0x07;
 					for(i=0 ; i<16 ; i++) pdat[i+1] = ptmp[i];
@@ -1143,7 +1143,7 @@ float test_3bit_encoding(int imp[],int psrc[],int pdat[],float er_qual)
 	return eq;
 }
 
-/* ‚c‚b‚a‚ğ¶¬ */
+/* ï¼¤ï¼£ï¼¢ã‚’ç”Ÿæˆ */
 void generate_dcb(int pdat[],unsigned short *pDCB)
 {
 	int i,mode,c0,c1,c2;
@@ -1186,23 +1186,23 @@ void generate_dcb(int pdat[],unsigned short *pDCB)
 
 
 /***************************************
-	‚S~‚SŒÂ‚Ìƒf[ƒ^—ñ‚ğ‚c‚b‚a‚Éˆ³k
+	ï¼”Ã—ï¼”å€‹ã®ãƒ‡ãƒ¼ã‚¿åˆ—ã‚’ï¼¤ï¼£ï¼¢ã«åœ§ç¸®
  ***************************************/
 int dcb_encode(
-		int psrc[],					// Œ³ƒf[ƒ^”z—ñ (ˆø”)
-		int qual,					// ˆ³kƒNƒIƒŠƒeƒB’l (ˆø”)
-		unsigned short *pDCB		// DCB‘‚«‚İƒ|ƒCƒ“ƒ^ (ˆø”)
+		int psrc[],					// å…ƒãƒ‡ãƒ¼ã‚¿é…åˆ— (å¼•æ•°)
+		int qual,					// åœ§ç¸®ã‚¯ã‚ªãƒªãƒ†ã‚£å€¤ (å¼•æ•°)
+		unsigned short *pDCB		// DCBæ›¸ãè¾¼ã¿ãƒã‚¤ãƒ³ã‚¿ (å¼•æ•°)
 	)
 {
 	int i,j,c,y,yy,x,xx,tmp;
-	int m,med[9],imp[16],idx[16];		// d—v“x‚Ìd‚İ•t‚¯‚Æƒ\[ƒg 
+	int m,med[9],imp[16],idx[16];		// é‡è¦åº¦ã®é‡ã¿ä»˜ã‘ã¨ã‚½ãƒ¼ãƒˆ 
 	float e01,e2,e3,er_qual;
 	int pass,offs,pdat[17],pdat01[17],pdat2[17],pdat3[17];
 
-	// psss    : “K—p‚·‚éƒR[ƒfƒBƒ“ƒO‚Ì§ŒÀ (0=0/1bit, 1=0/1/2bit, 2=0/1/2/3bit, 99=k¬Y)
-	// offs    : d—v“xƒe[ƒuƒ‹‚ÌƒIƒtƒZƒbƒg’l 
-	// er_qual : ƒNƒIƒŠƒeƒBƒXƒŒƒbƒVƒ‡ƒ‹ƒh 
-	/* ’l‚Íƒ`ƒ…[ƒjƒ“ƒO‚Ì—]’n‚ª‚ ‚è‚Ü‚· */
+	// psss    : é©ç”¨ã™ã‚‹ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã®åˆ¶é™ (0=0/1bit, 1=0/1/2bit, 2=0/1/2/3bit, 99=ç¸®å°Y)
+	// offs    : é‡è¦åº¦ãƒ†ãƒ¼ãƒ–ãƒ«ã®ã‚ªãƒ•ã‚»ãƒƒãƒˆå€¤ 
+	// er_qual : ã‚¯ã‚ªãƒªãƒ†ã‚£ã‚¹ãƒ¬ãƒƒã‚·ãƒ§ãƒ«ãƒ‰ 
+	/* å€¤ã¯ãƒãƒ¥ãƒ¼ãƒ‹ãƒ³ã‚°ã®ä½™åœ°ãŒã‚ã‚Šã¾ã™ */
 	switch(qual) {
 	case 0 :
 		pass = 1;	offs = 0;	er_qual = 16.0;		break;
@@ -1219,7 +1219,7 @@ int dcb_encode(
 	case 6 :
 		pass = 2;	offs = 0;	er_qual =  0.9;		break;
 
-	/* k¬‚x¬•ª‚l‚b‚tŒvZ—p */
+	/* ç¸®å°ï¼¹æˆåˆ†ï¼­ï¼£ï¼µè¨ˆç®—ç”¨ */
 	case 99 :
 		pass = 99;	offs = 0;	er_qual =  0.0;		break;
 
@@ -1227,11 +1227,11 @@ int dcb_encode(
 		pass = 2;	offs = 256;	er_qual =  1.0;		break;
 	}
 
-	// ƒƒfƒBƒAƒ“ƒtƒBƒ‹ƒ^‚Æ‚Ì•Î·‚©‚çŠeƒf[ƒ^‚Ìd—v“x‚ğZo 
+	// ãƒ¡ãƒ‡ã‚£ã‚¢ãƒ³ãƒ•ã‚£ãƒ«ã‚¿ã¨ã®åå·®ã‹ã‚‰å„ãƒ‡ãƒ¼ã‚¿ã®é‡è¦åº¦ã‚’ç®—å‡º 
 	for(y=0 ; y<4 ; y++) {
 		for(x=0 ; x<4 ; x++) {
 
-			for(i=0 ; i<3 ; i++) {			// ƒƒfƒBƒAƒ“ƒtƒBƒ‹ƒ^‚ğ“K—p 
+			for(i=0 ; i<3 ; i++) {			// ãƒ¡ãƒ‡ã‚£ã‚¢ãƒ³ãƒ•ã‚£ãƒ«ã‚¿ã‚’é©ç”¨ 
 				yy = y + (i-1);
 				if (yy < 0) yy = 1; else if (yy > 4) yy = 2;
 				for(j=0 ; j<3 ; j++) {
@@ -1251,19 +1251,19 @@ int dcb_encode(
 			}
 
 			m = med[4] - psrc[y*4 + x];
-			if(m < 0) m = -m;							// •Î·”ÍˆÍ 0`255
+			if(m < 0) m = -m;							// åå·®ç¯„å›² 0ï½255
 
-			c = calc_imp_encoding( m ) + offs;			// d—v“x 0`256
+			c = calc_imp_encoding( m ) + offs;			// é‡è¦åº¦ 0ï½256
 			if (c > 256) c = 256;
 			imp[y*4 + x] = c;
 		}
 	}
-	m = 0;												// ³‹K‰» 
+	m = 0;												// æ­£è¦åŒ– 
 	for(i=0 ; i<16 ; i++) if(m < imp[i]) m = imp[i];
 	for(i=0 ; i<16 ; i++) imp[i] = (imp[i] * 256) / m;
 
 
-	// ƒf[ƒ^‚ğƒ\[ƒg 
+	// ãƒ‡ãƒ¼ã‚¿ã‚’ã‚½ãƒ¼ãƒˆ 
 	for(i=0 ; i<16 ; i++) idx[i] = i;
 
 	for(i=0 ; i<16-1 ; i++) {
@@ -1277,7 +1277,7 @@ int dcb_encode(
 	}
 
 
-	// ƒGƒ“ƒR[ƒhs 
+	// ã‚¨ãƒ³ã‚³ãƒ¼ãƒ‰è©¦è¡Œ 
 	if (pass == 99) {
 		e2 = test_2bit_encoding(imp, psrc, pdat2, 1, 0.0);
 
@@ -1321,13 +1321,13 @@ int dcb_encode(
 
 
 /*****************************************
-	‚l‚b‚t‚ğƒXƒLƒbƒv‚·‚é‚©‚Ç‚¤‚©‚Ì”»’è
+	ï¼­ï¼£ï¼µã‚’ã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹ã‹ã©ã†ã‹ã®åˆ¤å®š
  *****************************************/
 
-int mcu_skip_check(					// MCUƒXƒLƒbƒv‚·‚é‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN (0 / 1‚ğ•Ô‚·)
-		mcu_rgb32 p[8][8],			// ŠY“–MCUƒuƒƒbƒN 
-		mcu_rgb32 r[8][8],			// ƒŠƒtƒ@ƒŒƒ“ƒXMCUƒuƒƒbƒN 
-		int qual					// ƒNƒIƒŠƒeƒBˆø”i0`6j
+int mcu_skip_check(					// MCUã‚¹ã‚­ãƒƒãƒ—ã™ã‚‹ã‹ã©ã†ã‹ã®ãƒã‚§ãƒƒã‚¯ (0 / 1ã‚’è¿”ã™)
+		mcu_rgb32 p[8][8],			// è©²å½“MCUãƒ–ãƒ­ãƒƒã‚¯ 
+		mcu_rgb32 r[8][8],			// ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹MCUãƒ–ãƒ­ãƒƒã‚¯ 
+		int qual					// ã‚¯ã‚ªãƒªãƒ†ã‚£å¼•æ•°ï¼ˆ0ï½6ï¼‰
 	)
 {
 	int i,j;
@@ -1335,14 +1335,14 @@ int mcu_skip_check(					// MCUƒXƒLƒbƒv‚·‚é‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN (0 / 1‚ğ•Ô‚·)
 	float ry[8][8],ru[4][4],rv[4][4];
 	float y_er,uv_er;
 
-	// ‹–—eŒë·ƒe[ƒuƒ‹ 
+	// è¨±å®¹èª¤å·®ãƒ†ãƒ¼ãƒ–ãƒ« 
 	float fe_sl[10] ={ 1536.0, 1536.0, 1024.0, 768.0, 512.0, 384.0, 256.0, 0.0, 0.0, 0.0};
 
 
 	mcu_conv_yuv420(p, py, pu, pv);
 	mcu_conv_yuv420(r, ry, ru, rv);
 
-	// U,V¬•ª‚ÌŒë·‚ğ©æ˜a‚Å‹‚ß‚é 
+	// U,Væˆåˆ†ã®èª¤å·®ã‚’è‡ªä¹—å’Œã§æ±‚ã‚ã‚‹ 
 	uv_er = 0.0;
 
 	for(i=0 ; i<4 ; i++) {
@@ -1355,7 +1355,7 @@ int mcu_skip_check(					// MCUƒXƒLƒbƒv‚·‚é‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN (0 / 1‚ğ•Ô‚·)
 	if (uv_er > fe_sl[qual]) return 0;
 
 
-	// Y¬•ª‚ÌŒë·‚ğ©æ˜a‚Å‹‚ß‚é 
+	// Yæˆåˆ†ã®èª¤å·®ã‚’è‡ªä¹—å’Œã§æ±‚ã‚ã‚‹ 
 	y_er = 0.0;
 
 	for(i=0 ; i<8 ; i++) {

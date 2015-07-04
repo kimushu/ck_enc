@@ -1,4 +1,4 @@
-// ŠÈˆÕBMPƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹ƒ‰ƒCƒuƒ‰ƒŠ
+// ç°¡æ˜“BMPãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«ãƒ©ã‚¤ãƒ–ãƒ©ãƒª
 
 #ifndef __bmplib_h_
 #define __bmplib_h_
@@ -8,8 +8,8 @@ typedef unsigned short	bmp_Word;
 typedef unsigned long	bmp_DWord;
 typedef bmp_DWord		bmp_RGB32;
 
-#pragma pack(1)						/* ƒpƒfƒBƒ“ƒO‚ğ‚PƒoƒCƒg’PˆÊ‚É‚·‚é */
-typedef struct {					/* BMPƒtƒ@ƒCƒ‹ƒwƒbƒ_\‘¢‘Ì */
+#pragma pack(1)						/* ãƒ‘ãƒ‡ã‚£ãƒ³ã‚°ã‚’ï¼‘ãƒã‚¤ãƒˆå˜ä½ã«ã™ã‚‹ */
+typedef struct {					/* BMPãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€æ§‹é€ ä½“ */
 	bmp_Word	bfType;
 	bmp_DWord	bfSize;
 	bmp_Word	bfReserve1;
@@ -30,10 +30,10 @@ typedef struct {					/* BMPƒtƒ@ƒCƒ‹ƒwƒbƒ_\‘¢‘Ì */
 #pragma pack()
 
 typedef struct {
-	BMPFILEHEAD	h;				// BMPƒtƒ@ƒCƒ‹ƒwƒbƒ_ 
-	bmp_RGB32 *pRGB;			// ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚ÌƒJƒŒƒ“ƒgƒ|ƒCƒ“ƒ^ 
-	bmp_RGB32 *pRGB_begin;		// ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚Ìæ“ªƒ|ƒCƒ“ƒ^ 
-	bmp_RGB32 *pRGB_end;		// ƒrƒbƒgƒ}ƒbƒvƒf[ƒ^‚ÌÅIƒ|ƒCƒ“ƒ^ 
+	BMPFILEHEAD	h;				// BMPãƒ•ã‚¡ã‚¤ãƒ«ãƒ˜ãƒƒãƒ€ 
+	bmp_RGB32 *pRGB;			// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒã‚¤ãƒ³ã‚¿ 
+	bmp_RGB32 *pRGB_begin;		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®å…ˆé ­ãƒã‚¤ãƒ³ã‚¿ 
+	bmp_RGB32 *pRGB_end;		// ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ãƒ‡ãƒ¼ã‚¿ã®æœ€çµ‚ãƒã‚¤ãƒ³ã‚¿ 
 } bmp_BITMAP_HANDLE;
 
 
