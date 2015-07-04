@@ -3,9 +3,10 @@
 #ifndef __bmplib_h_
 #define __bmplib_h_
 
-typedef unsigned char	bmp_Byte;
-typedef unsigned short	bmp_Word;
-typedef unsigned long	bmp_DWord;
+#include <stdint.h>
+typedef uint8_t			bmp_Byte;
+typedef uint16_t		bmp_Word;
+typedef uint32_t		bmp_DWord;
 typedef bmp_DWord		bmp_RGB32;
 
 #pragma pack(1)						/* パディングを１バイト単位にする */
