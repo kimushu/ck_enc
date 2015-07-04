@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <unistd.h>
 
 #include "bmplib.h"
 
@@ -84,9 +85,10 @@ int main(int argc, char *argv[])
 {
 	int i,j,fn,gopf;
 	int mcu_n,qual,fps,gop,pld;
-	char *s;
+	char ch;
 
 	ck_header ckh;
+	char *inputfile;
 	int file_number;
 	unsigned long frame_num,frame_dsize,file_dsize;
 	unsigned short *pWork;
@@ -115,22 +117,33 @@ int main(int argc, char *argv[])
 		exit(0);
 	}
 
+	ffmpeg = 0;
 	qual = 4;
 	fps  = 10*256;
 	gop  = 15;
 	pld  = 0;
-	for(i=2 ; i<argc ; i++) {
-		s = argv[i];
-		if( *s == '-' ) {
-			if( *(s+1) == 'q' || *(s+1) == 'Q' ) {
-				qual = atoi( s+2 );
-			} else if( *(s+1) == 'f' || *(s+1) == 'F' ) {
-				fps  = (int)(atof( s+2 )*256.0);
-			} else if( *(s+1) == 'g' || *(s+1) == 'G' ) {
-				gop  = atoi( s+2 );
-			} else if( *(s+1) == 'p' || *(s+1) == 'P' ) {
-				pld  = atoi( s+2 );
-			}
+	while((ch = getopt(argc, argv, "q:Q:f:F:g:G:p:P:")) != -1) {
+		switch(ch)
+		{
+		case 'q':
+		case 'Q':
+			qual = atoi( optarg );
+			break;
+		case 'f':
+		case 'F':
+			fps  = (int)(atof( optarg )*256.0);
+			break;
+		case 'g':
+		case 'G':
+			gop  = atoi( optarg );
+			break;
+		case 'p':
+		case 'P':
+			pld  = atoi( optarg );
+			break;
+		default:
+			fprintf(stderr, "無効なオプション - %s\n", optarg);
+			break;
 		}
 	}
 
@@ -138,20 +151,21 @@ int main(int argc, char *argv[])
 	// ファイル入力 
 
 	file_number = 0;
+	inputfile = argv[optind];
 
-	fin_name = scan_inputfile(argv[1], file_number);		// 連番が0からスタートする 
+	fin_name = scan_inputfile(inputfile, file_number);		// 連番が0からスタートする 
 	if (fin_name == NULL) {
 		file_number++;
-		fin_name = scan_inputfile(argv[1], file_number);	// 連番が1からスタートする 
+		fin_name = scan_inputfile(inputfile, file_number);	// 連番が1からスタートする 
 		if (fin_name == NULL) {
 			fprintf(stderr, "[!] 有効な連番ファイルが見つかりません.\n\n");
 			exit(-1);
 		}
 	}
 
-	sprintf(fout_name,"%s.ck\0", argv[1]);
+	sprintf(fout_name,"%s.ck\0", inputfile);
 
-	fprintf(stderr,"Input file  : %s_*.bmp\n", argv[1]);
+	fprintf(stderr,"Input file  : %s_*.bmp\n", inputfile);
 	fprintf(stderr,"Output file : %s\n", fout_name);
 
 	bmp = bmp_loadbmpfile(fin_name, &bmp_err);
@@ -232,7 +246,7 @@ int main(int argc, char *argv[])
 		file_number++;
 
 		// 次フレームBMPファイルの検索と読み込み 
-		fin_name = scan_inputfile(argv[1], file_number);
+		fin_name = scan_inputfile(inputfile, file_number);
 		if (fin_name == NULL) break;
 
 		bmp = bmp_loadbmpfile(fin_name, &bmp_err);
