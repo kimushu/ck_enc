@@ -16,6 +16,7 @@
 #include <unistd.h>
 
 #include "bmplib.h"
+#include "wavlib.h"
 
 
 #define mcu_rgb32					bmp_RGB32  		// RGB:888を32bitでパックした１ピクセル分のデータ 
@@ -42,11 +43,17 @@ typedef struct {
 	unsigned short mcu_n;			// フレームを構成するMCUの個数 
 	unsigned short fps;				// フレームレート 
 	unsigned long fnum;				// 総フレーム数 
-	char dummy[16];
+	unsigned char a_codec;			// 音声のコーデック
+	unsigned char a_channel;		// 音声のチャネル数
+	unsigned short a_rate;			// 音声のサンプリングレート
+	char dummy[12];
 } ck_header;
 #pragma pack ()
 
 #define STRIPBUFFER_SIZE		(512)
+
+#define AUDIO_PCM8				(0x0001)
+#define AUDIO_ADPCM4			(0x0020)
 
 
 const char *scan_inputfile(const char *filename, int frame_num)
@@ -89,6 +96,7 @@ int main(int argc, char *argv[])
 
 	ck_header ckh;
 	char *inputfile;
+	const char *audiofile;
 	int file_number;
 	unsigned long frame_num,frame_dsize,file_dsize;
 	unsigned short *pWork;
@@ -99,30 +107,34 @@ int main(int argc, char *argv[])
 	FILE *fckh,*fbmp;
 	const char *fin_name;
 	char fout_name[1024];
-	char temp[16] = {0x8E,0x62,0x92,0xE8,0x83,0x74,0x83,0x48, 0x81,0x5B,0x83,0x7D,0x83,0x62,0x83,0x67};
 
-	FILE *fwav;
+	FILE *faud;
+	WAVEfmt wave_fmt;
+	unsigned long a_drate, a_total, a_lead;
 	char payload_buff[512];
 
 
 	// 使い方 
 	if (argc < 2) {
-		fprintf(stderr,"usage : ck_enc <file-prefix> [-q<0-6>] [-f<fps>]\n\n");
+		fprintf(stderr,"usage : ck_enc <file-prefix> [-q<0-6>] [-f<fps>] [-a<audio-file>]\n\n");
 		fprintf(stderr,"  <file-prefix>_<n>.bmp の連番BMPをCKコーデックで圧縮します。\n");
 		fprintf(stderr,"             ※ <n>は0または1で始まる10進数の通し番号\n");
 		fprintf(stderr,"  -q<qual> : 圧縮品質（-q0:最低 - q6:最高）デフォルトは-q4\n");
 		fprintf(stderr,"  -f<fps>  : フレームレート デフォルトは-f10.0(10.0fps)\n");
+		fprintf(stderr,"  -a<file> : 音声情報を付加する(-pと併用不可)\n");
+		fprintf(stderr,"  -l<frame>: 音声情報の先行フレーム数を指定する(デフォルト0)\n");
 		fprintf(stderr,"  -g<gop>  : GOPフレーム数 デフォルトは-g15(15フレーム単位)\n");
 		fprintf(stderr,"  -p<byte> : フレームペイロードデータを付ける(テスト用)\n\n");
 		exit(0);
 	}
 
-	ffmpeg = 0;
 	qual = 4;
 	fps  = 10*256;
 	gop  = 15;
 	pld  = 0;
-	while((ch = getopt(argc, argv, "q:Q:f:F:g:G:p:P:")) != -1) {
+	audiofile = NULL;
+	a_lead = 0;
+	while((ch = getopt(argc, argv, "q:Q:f:F:g:G:a:A:l:L:p:P:")) != -1) {
 		switch(ch)
 		{
 		case 'q':
@@ -136,6 +148,14 @@ int main(int argc, char *argv[])
 		case 'g':
 		case 'G':
 			gop  = atoi( optarg );
+			break;
+		case 'a':
+		case 'A':
+			audiofile = optarg;
+			break;
+		case 'l':
+		case 'L':
+			a_lead = atoi( optarg );
 			break;
 		case 'p':
 		case 'P':
@@ -179,6 +199,61 @@ int main(int argc, char *argv[])
 	fprintf(stderr,"GOP size : %dframe\n",gop);
 	fprintf(stderr,"Payload data : %dbyte/frame\n",pld);
 
+	if (audiofile) {
+		RIFFHEADER header;
+
+		fprintf(stderr,"Audio file  : %s\n", audiofile);
+		faud = fopen(audiofile, "rb");
+		if (faud == NULL) {
+			printf("[ ! ] 音声入力ファイル %s が開けません.\n\n", audiofile);
+			exit(-1);
+		}
+
+		fread(&header, 1, sizeof(header), faud);
+		if ((header.chunk.ckID != RIFF_FOURCC_RIFF) ||
+			(header.form != RIFF_FOURCC_WAVE)) {
+			printf("[ ! ] 音声入力ファイルはWAVEファイルではありません.\n\n");
+			exit(-1);
+		}
+
+		fread(&header.chunk, 1, sizeof(header.chunk), faud);
+		if (header.chunk.ckID != RIFF_FOURCC_fmt) {
+			printf("[ ! ] 音声入力ファイルのフォーマットが無効です.\n\n");
+			exit(-1);
+		}
+
+		fread(&wave_fmt, 1, sizeof(wave_fmt), faud);
+		if ((wave_fmt.formatID != 1) ||
+			(wave_fmt.channels < 1) ||
+			(wave_fmt.channels > 2) ||
+			(wave_fmt.bitsPerSample != 8)) {
+			printf("[ ! ] この音声入力ファイルのフォーマットには対応していません.\n\n");
+			exit(-1);
+		}
+		fseek(faud, header.chunk.ckSize - sizeof(wave_fmt), SEEK_CUR);
+
+		fprintf(stderr,"Sample rate : %d kHz\n", wave_fmt.samplingRate);
+		fprintf(stderr,"              %lf / fps\n", 256.0 * wave_fmt.samplingRate / fps);
+		a_total = 0;
+		a_drate = wave_fmt.dataRate / fps / 256;
+		fprintf(stderr,"Data rate   : %d bytes approx.\n", a_drate);
+
+		while (!feof(faud)) {
+			fread(&header.chunk, 1, sizeof(header.chunk), faud);
+			if (header.chunk.ckID == RIFF_FOURCC_data) {
+				break;
+			}
+			fseek(faud, header.chunk.ckSize, SEEK_CUR);
+
+			if (feof(faud)) {
+				printf("[ ! ] 音声入力ファイルのdataチャンクが無効です.\n\n");
+				exit(-1);
+			}
+		}
+	} else {
+		faud = NULL;
+	}
+
 	mcu_n = ((bmp->h.biWidth + 7) / 8) * ((bmp->h.biHeight + 7) / 8);
 	pWork = (unsigned short *)malloc(mcu_n * (48 + 4));
 	if (pWork == NULL) exit(-1);
@@ -191,20 +266,26 @@ int main(int argc, char *argv[])
 
 
 	// ヘッダ作成 
+	memset(&ckh, 0, sizeof(ckh));
 	ckh.id[0]  = 'C';
 	ckh.id[1]  = 'K';
 	ckh.ver[0] = '7';
-	ckh.ver[1] = '2';
+	ckh.ver[1] = (faud != NULL ? '3' : '2');
 	ckh.x_size = bmp->h.biWidth;
 	ckh.y_size = bmp->h.biHeight;
 	ckh.mcu_n  = mcu_n;
 	ckh.fps    = fps;
 	ckh.fnum   = 0;
 
-	for(i=0 ; i<16 ; i++) ckh.dummy[i] = temp[i];
+	if (faud != NULL) {
+		ckh.a_codec = AUDIO_PCM8;
+		ckh.a_channel = wave_fmt.channels;
+		ckh.a_rate = wave_fmt.samplingRate;
+	}
+
 	fseek(fckh, STRIPBUFFER_SIZE, SEEK_SET);
 
-	for(i=0 ; i<512 ; i++) payload_buff[i] = 0;
+	memset(payload_buff, 0, sizeof(payload_buff));
 
 
 	// エンコード開始 
@@ -228,17 +309,51 @@ int main(int argc, char *argv[])
 
 		fprintf(stderr,"\rframe %d processing...",frame_num);
 
+		/*
+		 * <--512--->
+		 * +---------+---------+---------+--------- mrb_value
+		 * * |00 aaaaaa|00 aaaaaa|NZ vvvvvv|NZ vvvvvv|(
+		 * +---------+---------+---------+---------+
+		 * <--------------1frame------------------>
+		 *
+		 */
+
 		// ペイロードフレーム(音声) 
 		//   セクタ先頭2バイトは管理コードなのでペイロードは2バイト減る 
-		for(i=0 ; i<pld ; i+=510) {
-			fwrite(payload_buff, 1, 512, fckh);
-			file_dsize += 512;
+		if (faud) {
+			// データレートを調整する
+			// (サンプリングレートがFPSで割り切れない場合のため)
+			a_drate = ((frame_num + 1 + a_lead) * wave_fmt.samplingRate / (fps / 256)) - a_total;
+			i = 0;
+			while (i < a_drate) {
+				j = (a_drate - i);
+				if (j > 508) j = 508;
+				payload_buff[2] = j & 0xff;
+				payload_buff[3] = j >> 8;
+				fread(payload_buff + 4, 1, j, faud);
+				fwrite(payload_buff, 1, 512, fckh);
+				file_dsize += 512;
+				i += j;
+				if (feof(faud)) {
+					fclose(faud);
+					faud = NULL;
+					break;
+				}
+			}
+			a_total += a_drate;
+			printf("Debug A Frame: 0x%08x, ", ((a_drate + 507) / 508) * 512);
+		} else {
+			for(i=0 ; i<pld ; i+=510) {
+				fwrite(payload_buff, 1, 512, fckh);
+				file_dsize += 512;
+			}
 		}
 
 		// ACMフレーム(画像) 
 		frame_dsize = acm_compless_frame(bmp, ref, qual, pWork, gopf);
 		fwrite(pWork, 1, frame_dsize, fckh);
 		file_dsize += frame_dsize;
+		printf("Debug V Frame: 0x%08x\n", frame_dsize);
 
 		// フレームBMPファイルクローズ 
 		bmp_removehandle(bmp);
@@ -259,6 +374,9 @@ int main(int argc, char *argv[])
 
 	bmp_removehandle(ref);
 
+	if (faud) {
+		fclose(faud);
+	}
 
 	// ヘッダの書き込み 
 	ckh.fnum = frame_num;
