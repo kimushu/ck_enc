@@ -14,6 +14,7 @@
 #include <string.h>
 #include <math.h>
 #include <unistd.h>
+#include <stdint.h>
 
 #include "bmplib.h"
 #include "wavlib.h"
@@ -36,16 +37,16 @@ unsigned long acm_compless_frame(	// フレームのデータサイズを返す
 
 #pragma pack (1)
 typedef struct {
-	unsigned char id[2];			// ヘッダ 
-	unsigned char ver[2];			// コーデックバージョン 
-	unsigned short x_size;			// 画像の横サイズ 
-	unsigned short y_size;			// 画像の縦サイズ 
-	unsigned short mcu_n;			// フレームを構成するMCUの個数 
-	unsigned short fps;				// フレームレート 
-	unsigned long fnum;				// 総フレーム数 
-	unsigned char a_codec;			// 音声のコーデック
-	unsigned char a_channel;		// 音声のチャネル数
-	unsigned short a_rate;			// 音声のサンプリングレート
+	uint8_t id[2];			// ヘッダ 
+	uint8_t ver[2];			// コーデックバージョン 
+	uint16_t x_size;			// 画像の横サイズ 
+	uint16_t y_size;			// 画像の縦サイズ 
+	uint16_t mcu_n;			// フレームを構成するMCUの個数 
+	uint16_t fps;				// フレームレート 
+	uint32_t fnum;				// 総フレーム数 
+	uint8_t a_codec;			// 音声のコーデック
+	uint8_t a_channel;		// 音声のチャネル数
+	uint16_t a_rate;			// 音声のサンプリングレート
 	char dummy[12];
 } ck_header;
 #pragma pack ()
