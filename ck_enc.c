@@ -309,15 +309,6 @@ int main(int argc, char *argv[])
 
 		fprintf(stderr,"\rframe %d processing...",frame_num);
 
-		/*
-		 * <--512--->
-		 * +---------+---------+---------+--------- mrb_value
-		 * * |00 aaaaaa|00 aaaaaa|NZ vvvvvv|NZ vvvvvv|(
-		 * +---------+---------+---------+---------+
-		 * <--------------1frame------------------>
-		 *
-		 */
-
 		// ペイロードフレーム(音声) 
 		//   セクタ先頭2バイトは管理コードなのでペイロードは2バイト減る 
 		if (faud) {
