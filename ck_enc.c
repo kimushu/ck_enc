@@ -333,7 +333,7 @@ int main(int argc, char *argv[])
 				}
 			}
 			a_total += a_drate;
-			printf("Debug A Frame: 0x%08x, ", ((a_drate + 507) / 508) * 512);
+			fprintf(stderr, "Debug A Frame: 0x%08x, ", ((a_drate + 507) / 508) * 512);
 		} else {
 			for(i=0 ; i<pld ; i+=510) {
 				fwrite(payload_buff, 1, 512, fckh);
@@ -345,7 +345,7 @@ int main(int argc, char *argv[])
 		frame_dsize = acm_compless_frame(bmp, ref, qual, pWork, gopf);
 		fwrite(pWork, 1, frame_dsize, fckh);
 		file_dsize += frame_dsize;
-		printf("Debug V Frame: 0x%08x\n", frame_dsize);
+		fprintf(stderr,"Debug V Frame: 0x%08x", frame_dsize);
 
 		// フレームBMPファイルクローズ 
 		bmp_removehandle(bmp);
