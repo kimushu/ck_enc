@@ -1,21 +1,24 @@
 #!/bin/sh
 input=$1
-prefix=$2
+output=$2
 shift 2
-if [[ -z "$input" || -z "$prefix" ]]; then
-  echo "usage: $0 <input> <prefix> [<options>]"
+if [[ -z "$input" || -z "$output" ]]; then
+  echo "usage: $0 <input> <output> [<options>]"
   exit 1
 fi
-mkdir -p $prefix
-cmd="ffmpeg -i $input $* -vf scale=320:240,transpose=1 $prefix/${prefix}_%05d.bmp"
+tmp="tmp_${output##*/}"
+mkdir -p $tmp
+cmd="ffmpeg -i $input $* -vf scale=320:240,transpose=1 $tmp/video_%05d.bmp"
 echo $cmd
 $cmd
-cmd="ffmpeg -i $input -vn -ar 15625 -ac 1 -acodec pcm_u8 ${prefix}.wav"
+wav="$tmp/audio.wav"
+cmd="ffmpeg -i $input -vn -ar 15625 -ac 1 -acodec pcm_u8 $wav"
 echo $cmd
 $cmd
-cmd="./ck_enc -a ${prefix}.wav $prefix/${prefix}"
+cmd="./ck_enc -a $wav $tmp/video"
 echo $cmd
 $cmd
-mv $prefix/${prefix}.ck .
-rm $prefix/*.bmp
-rmdir $prefix/
+mv $tmp/video.ck $output
+rm $tmp/audio.wav
+rm $tmp/video_*.bmp
+rmdir $tmp
